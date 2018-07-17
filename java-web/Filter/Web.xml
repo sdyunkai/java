@@ -1,0 +1,10 @@
+<filter>
+<filter-name>myFilter</filter-name>
+<filter-class>myFilter</filter-class>
+</filter>
+<filter-mapping>
+<filter-name>myFilter</filter-name>
+<url-pattern>/*</url-pattern>
+<servlet-name></servlet-name><!--指定过滤器所拦截的Servet名称-->
+<dispatcher></dispatcher><!--指定过滤器所拦截的资源被Servlet容器调用的方式，可用的值有REQUEST,INCUDE,FORWARD,ERROR-->
+</filter-mapping>
