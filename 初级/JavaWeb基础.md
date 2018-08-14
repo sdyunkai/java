@@ -21,6 +21,7 @@
     使用外键的目的： 保证数据的完整性，从表不能添加主表没有的数据，主表不能删除从表中已经引用的数据
     多对多需要建三张表，两个实体表，一个中间表
     多表查询：inner join（隐式内链接，内链接）, outter join.（left,right)
+    内连接与外连接的区别： 内连接inner join 两表交集，  left outer join, 左表全部和两表交集，  right outer join ,右表全部和两表交集
 # 服务器端开发
   1. xml&Tomcat
   2. Web核心技术: servlet
