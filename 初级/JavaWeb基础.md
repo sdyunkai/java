@@ -22,8 +22,31 @@
     多对多需要建三张表，两个实体表，一个中间表
     多表查询：inner join（隐式内链接，内链接）, outter join.（left,right)
     内连接与外连接的区别： 内连接inner join 两表交集，  left outer join, 左表全部和两表交集，  right outer join ,右表全部和两表交集
+
+  3. 连接池
+    DBCP、C3P0、BoneCP、Druid
+    JavaBean的序列化的应用场景：
+      a. 把内存中的对象状态保存到一个文件中或者数据库中
+      b. 想用套接字在网络上传送对象的时候
+      c. 想通过RMI传输对象的时候
+
 # 服务器端开发
   1. xml&Tomcat
+    XML: w3c在1998年发布1.0版本
+    限定XML内容：
+      DTD或Schema
+    解析XML，DOM,SAX,PULL
+      dom4j,JAXP(sun),jDom,jsoup
+    Web应用服务器
+      a. weblogic： oracle公司的大型收费web服务器， 支持全部JavaEE规范
+      b. webSphere: IBM公司的大型收费web服务器， 支持全部JavaEE规范
+      c. Tomcat: Apache 开源免费中小型web应用服务器， 支持JavaEE的servlet和jsp规范
+      d. JBoss： redhat 企业应用平台 ， 开源源代码引用服务器，管理EJB的容器和服务器，核心服务不包括支持servlet/jsp的web容器，一般与tomcat或jetty绑定使用
+    http
+      http/1.0 , 发送请求，创建一次连接，获得一个web资源，连接断开
+      http/1.1, 发送请求，创建一次连接，获得多个web资源，连接断开
+      http协议是web开发的基石，不深入了解http协议，就不能说掌握了web开发
+      
   2. Web核心技术: servlet
   3. Web核心技术: request&response
   4. JSP&EL
