@@ -87,8 +87,41 @@
 
 # 数据库高级开发
   1. 事务操作
+    transaction
+    控制事务的connection必须是同一个，才能对事务进行控制
+    事务的特性：
+      ACID：原子、一致、并发事务之间要相互隔离、持久性（一个事务一旦被提交，它对数据库中的数据的改变就是永久性的，接下来即使数据库发生故障也不应该对其有任何影响）
+    并发访问问题： 由隔离性引起
+      脏读：事务B读到了事务A的未提交数据。
+      不可重复度： 一个事务中两次读取的数据内容不一致。
+      幻度： 一个事务中两次读取的数据的数量不一致。
+    解决并发，设置事务的四种隔离级别
+      read-uncommitted、read-committed(oracle default)、repeatable-read（mysql default)、serializable(最高隔离级别，锁表))
+
   2. 分页操作
+    VO： value object，通常用于业务层之间的数据传递
+    构建pageBean VO 和 condition VO
+
 # 服务器高级开发
   1. 过滤器和监听器
+    javaEE包括13门规范，其中javaweb，常用的是servlet和jsp
+    Servlet规范三个技术点：
+      Servlet, listener, filter
+    Listener: 常用8中监听器，3个域对象的生命周期listener,3个域对象的属性变化listener，2个特殊javebean在session作用域的listener(特殊，不需要在web.xml中配置)，和httpsessionAttributeListener的区别，不需要在web.xml中配置，javabean必须实现相应接口，只针对当前javabean使用
+      事件源：被监听对象， 三个域对象， request, session, servletContext
+      监听器：监听事件源对象
+      注册监听器： 监听器和事件源绑定
+      响应行为： 监听到变化，所涉及的功能代码
+    监听器有哪些？
+      第一维度： 按被监听对象划分， ServletRequest, HttpSession, ServletContext
+      第二维度： 按监听对象的创建和销毁， 对象属性的变化
+    Servlet'ContextListener主要作用：
+      a. 初始化， 初始化对象 数据 --- 加载数据库驱动 连接池的初始化
+      b. 加载一些初始化的配置文件 ，例如 spring的配置文件
+      c. 任务调度 ---定时器---timer/timertask
+    HttpSessionBindingListenner
   2. ajax&jQuey的ajax
+    浏览器内核中实现了ajax引擎，请求交给ajax引擎处理
+    Json转换插件： 将java对象或集合转换成json字符串
+      jsonlib,Gson(google),fastjson(alibaba)
   
