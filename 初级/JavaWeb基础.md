@@ -48,8 +48,43 @@
       http协议是web开发的基石，不深入了解http协议，就不能说掌握了web开发
       
   2. Web核心技术: servlet
+    Servlet规范三大技术要点： Servlet技术、Filter、Listener
+    创建Servlet： 实现Servlet接口，继承HttpServlet
+    Sevlet声明周期：
+      a. 创建： 默认第一次访问时创建(可以通过配置，告诉容器在启动的时候就创建servlet对象, <load-on-startup>)
+      b. 销毁： 服务器关闭时候销毁
+      c. service： 每次访问都会执行service方法
+    url-pattern的配置方式：
+      a. 完全匹配  /a
+      b. 目录匹配  /x/b/*
+      c. 扩展名匹配 *.a
+    ServletContext: 对应一个web,创建：web应用被加载（服务器启动或发布web应用），销毁：应用被卸载（服务器关闭，移除该web应用）
+      可以获取web应用的全局初始化配置参数, <context-param><param-name><param-value>
+      获得web应用中任何资源的绝对路径
+      域对象， domain object, 全局数据共享
+
   3. Web核心技术: request&response
+    Response缓冲区
+      乱码问题、状态码、响应头、输出流
+    Request
+    Session&Cookie
+    Session生命周期，过期。 正常关闭服务器，session会序列化到本地
+    
   4. JSP&EL
+    JSP运行原理： JSP本质就是Servlet
+    JSP三大指令： <%@ %>
+      page、include、taglib
+    JSP九大内置对象：
+      out、request、response、config、session、application、page、pageContext、exception
+    JSPl两大标签（动作)
+      动态包含 <jsp:include page="">
+      请求转发 <jsp:forward page="">
+    静态包含和动态包含的区别？
+      前置发生在转换阶段，后者发生在编译阶段，产生两个类
+    EL作用：减少jsp脚本的编写
+    JSTL: JSP Standard Tag library,嵌入jsp页面，使用标签的形式完成业务逻辑功能。也是了减少jsp页面中的脚本代码
+    JSP开发模式： model1:jsp+javabean, model2: jsp + servelt + javabean. MVC ， JavaEE服务器端开发三层架构 ， Web（与客户端交互）、Service（复杂业务处理）、Dao（与数据库进行交互）
+
 # 数据库高级开发
   1. 事务操作
   2. 分页操作
