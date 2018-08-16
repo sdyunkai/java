@@ -120,8 +120,84 @@
       b. 加载一些初始化的配置文件 ，例如 spring的配置文件
       c. 任务调度 ---定时器---timer/timertask
     HttpSessionBindingListenner
+
+    Filter:
+      a. 作用
+        1) 对客户端访问资源过滤
+        2) 对目标资源访问前后进行逻辑处理
+      b. 配置
+        web.xml
+      c. 生命周期
+        1) 创建： 服务器启动就创建filter对象
+        2) 销毁： 服务器关闭时filter销毁
+      d. 应用
+        1) 公共代码的提取
+        2) 可以对request和response中的方法进行增强（装饰者模式/动态代理)
+        3) 进行权限控制
+        自动登录、解决全站乱码、屏蔽非法文字、进行响应数据压缩等
+      e. 过滤器链
+        FilterChain中的过滤器的执行的顺序跟<filter-mapping>的配置顺序有关
+      f. 配置
+        1) url-pattern 
+        2) servlet-name
+        3) dispatcher : request, forward, error, include
+
   2. ajax&jQuey的ajax
     浏览器内核中实现了ajax引擎，请求交给ajax引擎处理
     Json转换插件： 将java对象或集合转换成json字符串
       jsonlib,Gson(google),fastjson(alibaba)
+
+  3. 类加载器
+    a. 作用
+      加载字节码文件，生成Class对象
+    b. 分类
+      1) BootStrap  加载 jre/lib/rt.jar
+      2) ExtClassLoader 加载 jre/lib/ext/*.jar
+      3) AppClassLoader（SystemclassLoader)  加载classpath指定的所有jar或目录
+    c. 如何获得
+      通过字节码对象，可以获得类加载器 getClassLoader()
+    d. 类加载的加载机制
+      全盘负责和双亲委托机制，所谓全盘负责就是 ，classLoader装载一个类时，除非显式使用另一个ClassLoader，则该类所依赖即引用的类，也都由这个classloader加载。
+      本质上真正加载class文件生成Class对象由双亲委托机制实现。所谓双亲委托就是，子类加载器如果没有加载过目标类，则先委托其父类加载，只有父类加载器找不到字节码文件的时候，才从自己的类路径中查找并装载目标类。
+      双亲委托机制只是java推荐的机制， 并不是强制的机制。 
+      我们可以继承java.lang.ClassLoader, 实现自己的类加载器。 如果想保持双亲委托模型， 就应该重写findClass(name)方法， 如果想破坏双亲委托模型，可以重写loadClass(name)方法
+      如果一个class文件，被两个类加载器加载，将是两个对象
+      通过自定义类加载器，可以将一个class文件加载多次
+
+  4. 动态代理
+    a. 代理的流程(中介)
+      调用者、中间人、目标方
+    b. 何为动态
+      不用手动编写一个代理对象，在运行时的内存中动态生成代理对象。 --- 字节码对象级别的代理对象。
+    c. 如何实现
+      1) jdk API实现
+        jdk提供的动态代理的API。 Proxy.newProxyInstance(); // 注意： jdk的proxy方式实现的动态代理， 目标对象必须有接口，没有接口的话不能实现jdk版的动态代理
+      2) cglib动态代理实现
+        code generation library,开源项目，code生成类库， 底层基于ASM。 java bytecode 操作框架。
+        cglib， 可以在运行期扩展java类和实现java接口， 弥补了jdk proxy api只能对有接口的对象实现动态代理的不足。
+        Hibernate， SpringAOP的动态代理实现均采用的是cglib库的实现。
+
+
+  5. 注解 @xxx
+    a. 作用
+      使用特定的语法，注释给jvm看的， 通过annotation， jvm可以对class执行预定义操作 ， 代替配置文件
+      1) 编译检查：通知编译器实现基本的编译检查
+      2) 代码分析：通过代码里的标识注解， 对代码进行分析， 从而达到取代xml的目的
+      3) 编写文档： 辅助生成帮助文档对应的内容
+    b. 与配置文件的对比
+      注解优点：开发效率高 成本低
+      注解缺点：耦合性大， 并且不利于后期维护
+    c. 常用注解
+      Override、Deprecated、SuppressWarning
+    d. 自定义注解
+      注解是一种类型， 与类、接口和枚举是平级的
+      1) 关键字 @interface
+        语法： 返回值 名称（）， 如果属性的名字是value，并且注解的属性只有一个， 那么使用注解时候就可以省略value
+      2) 元注解
+        @Retention、@Target
+      3) 定义注解还是标示元注解， 包括自定义注解的保留策略和修饰对象
+    e. 注解解析
+      实质是从注解中解析出属性值
+
+
   
