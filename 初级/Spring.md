@@ -37,3 +37,50 @@
 # 属性注入
     构造方法属性注入、set方法属性注入
     
+# spring注解配置
+    bean定义：component
+        controller
+        service
+        repository
+    value
+    bean注入：autowired resouce
+    scope
+    postconstruct、predestroy
+
+# spring aop
+    底层用到两种代理机制：
+        jdk proxy 、cglib
+    API:
+        joinpoint、pointcut、advice、target、weaving、proxy、aspect
+    创建advice
+    配置织入
+        <aop:config>
+            <aop:pointcut>
+            <aop:aspect ref="advice">
+                <aop:before method="">
+        </aop:config>
+    注解配置和XML配置
+
+底层实现
+implement InvocationHandler
+Proxy.newProxyInstance
+
+implement MethodInterceptor
+Enhance
+
+# Spring 整合jdbc
+    spring提供了很多模板整合Dao技术
+        JDBC、Hibernate3.0、MyBatis、JPA
+# Spring AOP事务
+    spring封装事务管理代码
+        事务操作对象
+            PlatformTransactionManager接口
+                DataSourceTransactionManager
+                HibernateTransactionManager
+            spring中做事务管理的关键是用好TransactionManager对象
+        事务的传播行为
+            propagation_required
+    spring管理事务的方式
+        编码实现
+        xml配置
+        注解配置
