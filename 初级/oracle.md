@@ -23,3 +23,23 @@
   # 存储过程
   # 函数
   # 触发器
+  # synonym(同义词)
+
+  # 海量数据插入
+    1. 数据泵
+        dbms_datapump
+    2. SQL*Loader
+    3. 外部表
+
+# SQL优化
+    1. 尽量使用字段查询
+    2. 尽量使用where
+    3. 尽量不要使用集合运算
+    4. 尽量使用多表查询
+
+# rownum   
+    1. rownum永远按照默认的顺序生成
+    2. rownum只能使用< 和 <= ； 不能使用 > 和 >=
+
+# recyclebin 
+    flashback
